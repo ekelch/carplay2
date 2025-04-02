@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dkjtmtpmnt827"
+path="res://.godot/imported/Poshlaya Molly - song1.mp3-8f9a22b6f3bcd709af02c906aa03363d.mp3str"
+
+[deps]
+
+source_file="res://assets/Poshlaya Molly - song1.mp3"
+dest_files=["res://.godot/imported/Poshlaya Molly - song1.mp3-8f9a22b6f3bcd709af02c906aa03363d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
