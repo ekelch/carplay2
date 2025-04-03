@@ -8,6 +8,7 @@ var state: AppState
 @onready var song_list: VBoxContainer = $SongList
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var currently_playing: Label = $CurrentlyPlaying
+const songListItemScene = preload("res://scenes/song_list_item.tscn")
 
 func _ready():
 	state = AppState.new()
@@ -73,15 +74,11 @@ func generateSongRows() -> void:
 		
 	for songDict in query_result:
 		var song = SongModel.buildFromDict(songDict)
-		var hbox = HBoxContainer.new()
-		var button = Button.new()
-		button.text = "play"
-		button.pressed.connect(play_song.bind(song))
-		var label = Label.new()
-		label.text = song.song_name
-		hbox.add_child(button)
-		hbox.add_child(label)
-		song_list.add_child(hbox)
+		
+		var songListItem = songListItemScene.instantiate()
+		songListItem.song_name = song.song_name
+		#button.pressed.connect(play_song.bind(song))
+		song_list.add_child(songListItem)
 
 func play_song(song: SongModel):
 	state.song = song

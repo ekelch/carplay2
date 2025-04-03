@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cn8gvyf2jg114"]
+
+[ext_resource type="FontFile" uid="uid://b6i8o1518r70l" path="res://assets/fonts/fira.ttf" id="1_amlv4"]
+
+[resource]
+default_font = ExtResource("1_amlv4")
+default_font_size = 12
+MainLabel/base_type = &"Label"
+SubLabel/base_type = &"Label"
+SubLabel/font_sizes/font_size = 10
