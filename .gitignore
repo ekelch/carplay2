@@ -1,3 +1,5 @@
-# Godot 4+ specific ignores
+i# Godot 4+ specific ignores
 .godot/
 /android/
+
+/carplay2exe/
