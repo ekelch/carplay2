@@ -60,9 +60,6 @@ func selectAllFilesSorted() -> Array:
 func removeFile(file_name: String):
 	database.delete_rows("songs", "file_name = '%s'" % file_name)
 
-func _on_insert_data_pressed() -> void:
-	pass
-
 #Rerender songs list UI from all songs in database
 func generateSongRows() -> void:
 	var query_result = database.select_rows("songs", "", ["*"])
@@ -75,18 +72,13 @@ func generateSongRows() -> void:
 		song_list.add_child(SongListItem.buildSongListItem(song, play_song))
 
 func play_song(song: SongModel):
+	audio_stream_player.stop()
 	state.song = song
-	#audio_stream_player.stop()
+	currently_playing.text = state.song.song_name
+	
 	var audio_stream = AudioStreamMP3.load_from_file("res://assets/" + song.file_name)
 	audio_stream_player.stream = audio_stream
 	audio_stream_player.play()
-	currently_playing.text = state.song.song_name
-
-func _on_delete_data_pressed() -> void:
-	pass
-
-func _on_select_data_pressed() -> void:
-	refreshDatabase()
 
 func _on_audio_stream_player_2d_finished() -> void:
 	pass # Replace with function body.
