@@ -3,12 +3,9 @@ extends Control
 var database: SQLite
 var file_handles: Array
 var state: AppState
-@onready var field_songName: TextEdit = $NameContainer/TextEdit
-@onready var field_artistName: TextEdit = $ArtistContainer/TextEdit
 @onready var song_list: VBoxContainer = $SongList
 @onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var currently_playing: Label = $CurrentlyPlaying
-const songListItemScene = preload("res://scenes/song_list_item.tscn")
 
 func _ready():
 	state = AppState.new()
@@ -66,6 +63,7 @@ func removeFile(file_name: String):
 func _on_insert_data_pressed() -> void:
 	pass
 
+#Rerender songs list UI from all songs in database
 func generateSongRows() -> void:
 	var query_result = database.select_rows("songs", "", ["*"])
 	
@@ -74,15 +72,11 @@ func generateSongRows() -> void:
 		
 	for songDict in query_result:
 		var song = SongModel.buildFromDict(songDict)
-		
-		var songListItem = songListItemScene.instantiate()
-		songListItem.song_name = song.song_name
-		#button.pressed.connect(play_song.bind(song))
-		song_list.add_child(songListItem)
+		song_list.add_child(SongListItem.buildSongListItem(song, play_song))
 
 func play_song(song: SongModel):
 	state.song = song
-	audio_stream_player.stop()
+	#audio_stream_player.stop()
 	var audio_stream = AudioStreamMP3.load_from_file("res://assets/" + song.file_name)
 	audio_stream_player.stream = audio_stream
 	audio_stream_player.play()

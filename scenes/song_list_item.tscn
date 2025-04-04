@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtquu73orvak2"]
+[gd_scene load_steps=6 format=3 uid="uid://dtquu73orvak2"]
 
 [ext_resource type="Script" uid="uid://cppjv4161t7yb" path="res://scripts/song_list_item.gd" id="1_q4a42"]
 [ext_resource type="Theme" uid="uid://cn8gvyf2jg114" path="res://themes/new_theme.tres" id="1_wdvvc"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q4a42"]
+size = Vector2(24, 24)
 
 [sub_resource type="Gradient" id="Gradient_8yan8"]
 interpolation_mode = 2
@@ -12,34 +15,32 @@ colors = PackedColorArray(0.704218, 0.194928, 0.515949, 1, 0.914245, 0.358362, 0
 gradient = SubResource("Gradient_8yan8")
 width = 36
 
-[node name="SongListItem" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SongListItem" type="HBoxContainer" node_paths=PackedStringArray("song_name", "artist_name", "play_button")]
+offset_right = 142.0
+offset_bottom = 34.0
 script = ExtResource("1_q4a42")
+song_name = NodePath("VBoxContainer/SongName")
+artist_name = NodePath("VBoxContainer/ArtistName")
+play_button = NodePath("PlayButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 71.0
-offset_bottom = 36.0
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 2
+icon = SubResource("PlaceholderTexture2D_q4a42")
 
-[node name="CoverArt" type="TextureRect" parent="HBoxContainer"]
+[node name="CoverArt" type="TextureRect" parent="."]
 layout_mode = 2
 texture = SubResource("GradientTexture1D_y1y60")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="SongName" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="SongName" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_wdvvc")
 theme_type_variation = &"MainLabel"
 text = "song name"
 
-[node name="ArtistName" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="ArtistName" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_wdvvc")
 theme_type_variation = &"SubLabel"
