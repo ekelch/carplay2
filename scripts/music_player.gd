@@ -16,3 +16,7 @@ func prev():
 
 func next():
 	print("next not impl")
+
+func seekToPct(pct: float):
+	if (MusicPlayer.playing):
+		MusicPlayer.seek(pct * MusicPlayer.stream.get_length())
