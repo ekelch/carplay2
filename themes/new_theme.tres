@@ -6,5 +6,6 @@
 default_font = ExtResource("1_amlv4")
 default_font_size = 12
 MainLabel/base_type = &"Label"
+MainLabel/font_sizes/font_size = 18
 SubLabel/base_type = &"Label"
-SubLabel/font_sizes/font_size = 10
+SubLabel/font_sizes/font_size = 14

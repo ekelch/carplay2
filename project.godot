@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 MusicPlayer="*res://scripts/music_player.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+
 [input]
 
 mb_click={

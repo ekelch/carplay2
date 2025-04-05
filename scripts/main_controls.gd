@@ -1,7 +1,7 @@
 class_name MainControls extends VBoxContainer
 @onready var h_scroll_bar: HScrollBar = $HScrollBar
 
-func _process(delta: float):
+func _process(_delta: float):
 	if (MusicPlayer.stream && MusicPlayer.playing):
 		h_scroll_bar.value = MusicPlayer.get_playback_position() / MusicPlayer.stream.get_length() * h_scroll_bar.max_value
 

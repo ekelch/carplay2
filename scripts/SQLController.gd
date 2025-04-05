@@ -30,7 +30,7 @@ func create_database() -> void:
 	database.create_table("songs", songs)
 	
 func populate_database_from_assets():
-	var dir = DirAccess.open("res://assets")
+	var dir = DirAccess.open("res://assets/songs")
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
@@ -75,7 +75,7 @@ func play_song(song: SongModel):
 	state.song = song
 	currently_playing.text = state.song.song_name
 	
-	var audio_stream = AudioStreamMP3.load_from_file("res://assets/" + song.file_name)
+	var audio_stream = AudioStreamMP3.load_from_file("res://assets/songs/" + song.file_name)
 	MusicPlayer.stream = audio_stream
 	MusicPlayer.play()
 

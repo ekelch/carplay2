@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtquu73orvak2"]
+[gd_scene load_steps=7 format=3 uid="uid://dtquu73orvak2"]
 
 [ext_resource type="Script" uid="uid://cppjv4161t7yb" path="res://scripts/song_list_item.gd" id="1_q4a42"]
 [ext_resource type="Theme" uid="uid://cn8gvyf2jg114" path="res://themes/new_theme.tres" id="1_wdvvc"]
+[ext_resource type="Texture2D" uid="uid://yvfai3qmoks4" path="res://assets/icons/play.svg" id="3_aqwl8"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q4a42"]
-size = Vector2(24, 24)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqwl8"]
+bg_color = Color(0.463144, 0.464893, 0.545019, 1)
 
 [sub_resource type="Gradient" id="Gradient_8yan8"]
 interpolation_mode = 2
@@ -15,35 +16,45 @@ colors = PackedColorArray(0.704218, 0.194928, 0.515949, 1, 0.914245, 0.358362, 0
 gradient = SubResource("Gradient_8yan8")
 width = 36
 
-[node name="SongListItem" type="HBoxContainer" node_paths=PackedStringArray("song_name", "artist_name", "play_button")]
-offset_right = 142.0
-offset_bottom = 34.0
+[node name="SongListItem" type="PanelContainer" node_paths=PackedStringArray("song_name", "artist_name", "play_button")]
+custom_minimum_size = Vector2(300, 0)
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 599.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aqwl8")
 script = ExtResource("1_q4a42")
-song_name = NodePath("VBoxContainer/SongName")
-artist_name = NodePath("VBoxContainer/ArtistName")
-play_button = NodePath("PlayButton")
+song_name = NodePath("Hbox/VBoxContainer/SongName")
+artist_name = NodePath("Hbox/VBoxContainer/ArtistName")
+play_button = NodePath("Hbox/PlayButton")
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="Hbox" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-icon = SubResource("PlaceholderTexture2D_q4a42")
+theme_override_constants/separation = 4
 
-[node name="CoverArt" type="TextureRect" parent="."]
+[node name="PlayButton" type="Button" parent="Hbox"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+theme_override_icons/icon = ExtResource("3_aqwl8")
+expand_icon = true
+
+[node name="CoverArt" type="TextureRect" parent="Hbox"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_y1y60")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Hbox"]
 layout_mode = 2
 
-[node name="SongName" type="Label" parent="VBoxContainer"]
+[node name="SongName" type="Label" parent="Hbox/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_wdvvc")
 theme_type_variation = &"MainLabel"
 text = "song name"
 
-[node name="ArtistName" type="Label" parent="VBoxContainer"]
+[node name="ArtistName" type="Label" parent="Hbox/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_wdvvc")
 theme_type_variation = &"SubLabel"
 text = "artist name"
-
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

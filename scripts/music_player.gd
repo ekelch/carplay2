@@ -1,9 +1,6 @@
 extends AudioStreamPlayer2D
 var pausedPosition = 0
 
-func _process(delta: float) -> void:
-	pass
-
 func playPause():
 	if MusicPlayer.playing:
 		pausedPosition = MusicPlayer.get_playback_position()
