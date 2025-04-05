@@ -14,3 +14,7 @@ config/name="carplay2"
 run/main_scene="uid://66pky70uhtnf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MusicPlayer="*res://scripts/music_player.gd"

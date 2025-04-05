@@ -45,3 +45,5 @@ layout_mode = 2
 theme = ExtResource("1_wdvvc")
 theme_type_variation = &"SubLabel"
 text = "artist name"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
