@@ -13,8 +13,16 @@ func buildSongListItem(songModel: SongModel, playFn: Callable):
 	options_menu.get_popup().id_pressed.connect(_on_menu_item_pressed)
 
 func _on_menu_item_pressed(id: int):
-	print(id)
-	print(song.song_name)
+	match id:
+		0: editSongName()
+		1: editArtistName()
+		2: deleteSelf()
 
-static func deleteSelf():
-	pass
+func editSongName():
+	print("editing song name " + song.song_name)
+	
+func editArtistName():
+	print("editing artist name " + song.artist_name)
+
+func deleteSelf():
+	queue_free()

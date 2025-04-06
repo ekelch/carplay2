@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://66pky70uhtnf"]
 
-[ext_resource type="Script" uid="uid://bweigo1uufec2" path="res://scripts/SQLController.gd" id="1_yh7up"]
-[ext_resource type="PackedScene" uid="uid://dtquu73orvak2" path="res://scenes/song_list_item.tscn" id="2_y3uxb"]
-[ext_resource type="Script" uid="uid://bnoj1v80ft2t2" path="res://scripts/music_player.gd" id="3_x426o"]
-[ext_resource type="PackedScene" uid="uid://cru72a0rwa46l" path="res://scenes/main_controls.tscn" id="4_57473"]
+[ext_resource type="Script" uid="uid://bweigo1uufec2" path="res://scripts/root_node.gd" id="1_ldoum"]
+[ext_resource type="PackedScene" uid="uid://dtquu73orvak2" path="res://scenes/song_list_item.tscn" id="2_7b5fe"]
+[ext_resource type="Script" uid="uid://bnoj1v80ft2t2" path="res://scripts/music_player.gd" id="3_jfjke"]
+[ext_resource type="PackedScene" uid="uid://cru72a0rwa46l" path="res://scenes/main_controls.tscn" id="4_l3gbx"]
 
-[node name="Control" type="Control"]
+[node name="Root" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yh7up")
+script = ExtResource("1_ldoum")
 
 [node name="SongList" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -22,14 +22,14 @@ offset_right = 159.0
 offset_bottom = -98.0
 grow_vertical = 2
 
-[node name="Control" parent="SongList" instance=ExtResource("2_y3uxb")]
+[node name="Control" parent="SongList" instance=ExtResource("2_7b5fe")]
 layout_mode = 2
 
-[node name="SongListItem" parent="SongList" instance=ExtResource("2_y3uxb")]
+[node name="SongListItem" parent="SongList" instance=ExtResource("2_7b5fe")]
 layout_mode = 2
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
-script = ExtResource("3_x426o")
+script = ExtResource("3_jfjke")
 
 [node name="CurrentlyPlaying" type="Label" parent="."]
 layout_mode = 1
@@ -42,7 +42,7 @@ offset_right = 499.0
 offset_bottom = -26.0
 grow_vertical = 0
 
-[node name="MainControls" parent="." instance=ExtResource("4_57473")]
+[node name="MainControls" parent="." instance=ExtResource("4_l3gbx")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -56,4 +56,5 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="finished" from="MusicPlayer" to="." method="_on_audio_stream_player_2d_finished"]
