@@ -1,19 +1,18 @@
 class_name SongListItem extends Control
-const songListScene = preload("res://scenes/song_list_item.tscn")
 @export var song_name: Label
 @export var artist_name: Label
 @export var play_button: Button
 @export var options_menu: MenuButton
+var song: SongModel
 
-static func buildSongListItem(song: SongModel, playFn: Callable) -> SongListItem:
-	var songListItem: SongListItem = songListScene.instantiate()
-	songListItem.song_name.text = song.song_name
-	songListItem.artist_name.text = song.artist_name
-	songListItem.play_button.connect("pressed", playFn.bind(song))
-	songListItem.options_menu.get_popup().id_pressed.connect(func(id:int):_on_menu_item_pressed(id, song))
-	return songListItem
+func buildSongListItem(songModel: SongModel, playFn: Callable):
+	song = songModel
+	song_name.text = song.song_name
+	artist_name.text = song.artist_name
+	play_button.connect("pressed", playFn.bind(song))
+	options_menu.get_popup().id_pressed.connect(_on_menu_item_pressed)
 
-static func _on_menu_item_pressed(id: int, song: SongModel):
+func _on_menu_item_pressed(id: int):
 	print(id)
 	print(song.song_name)
 

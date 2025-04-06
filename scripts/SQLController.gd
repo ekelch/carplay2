@@ -1,4 +1,5 @@
 extends Control
+const songListScene = preload("res://scenes/song_list_item.tscn")
 
 var database: SQLite
 var file_handles: Array
@@ -67,9 +68,13 @@ func generateSongRows() -> void:
 		song_list.remove_child(child)
 		
 	for songDict in query_result:
-		var song = SongModel.buildFromDict(songDict)
-		song_list.add_child(SongListItem.buildSongListItem(song, play_song))
+		generateChild(SongModel.buildFromDict(songDict))
 
+func generateChild(song: SongModel):
+	var child: SongListItem = songListScene.instantiate()
+	child.buildSongListItem(song, play_song)
+	song_list.add_child(child)
+	
 func play_song(song: SongModel):
 	MusicPlayer.stop()
 	state.song = song
