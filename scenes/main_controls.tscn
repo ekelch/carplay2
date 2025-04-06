@@ -27,6 +27,7 @@ text = "next"
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="pressed" from="HBoxContainer/PreviousBtn" to="." method="_on_previous_btn_pressed"]
 [connection signal="pressed" from="HBoxContainer/PlayPauseBtn" to="." method="_on_play_pause_btn_pressed"]
 [connection signal="pressed" from="HBoxContainer/NextBtn" to="." method="_on_next_btn_pressed"]

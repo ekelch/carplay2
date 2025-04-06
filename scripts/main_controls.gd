@@ -1,5 +1,7 @@
 class_name MainControls extends VBoxContainer
 @onready var h_scroll_bar: HScrollBar = $HScrollBar
+var lastPos = 0
+const minScrub = 15
 
 func _process(_delta: float):
 	if (MusicPlayer.stream && MusicPlayer.playing):
@@ -15,6 +17,7 @@ func _on_next_btn_pressed() -> void:
 	MusicPlayer.next()
 
 func _on_h_scroll_bar_gui_input(event: InputEvent) -> void:
-	if event.is_action("mb_click"):
+	if Input.is_action_just_pressed("mb_click") || Input.is_action_pressed("mb_click") && abs(lastPos - event.position.x) > minScrub:
 		var posPct = event.position.x / h_scroll_bar.size.x
 		MusicPlayer.seekToPct(posPct)
+		lastPos = event.position.x
