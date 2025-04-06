@@ -16,7 +16,7 @@ colors = PackedColorArray(0.704218, 0.194928, 0.515949, 1, 0.914245, 0.358362, 0
 gradient = SubResource("Gradient_8yan8")
 width = 36
 
-[node name="SongListItem" type="PanelContainer" node_paths=PackedStringArray("song_name", "artist_name", "play_button")]
+[node name="SongListItem" type="PanelContainer" node_paths=PackedStringArray("song_name", "artist_name", "play_button", "options_menu")]
 custom_minimum_size = Vector2(300, 0)
 offset_left = -1.0
 offset_top = 2.0
@@ -27,6 +27,7 @@ script = ExtResource("1_q4a42")
 song_name = NodePath("Hbox/VBoxContainer/SongName")
 artist_name = NodePath("Hbox/VBoxContainer/ArtistName")
 play_button = NodePath("Hbox/PlayButton")
+options_menu = NodePath("Hbox/OptionsMenu")
 
 [node name="Hbox" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(600, 0)
@@ -46,6 +47,7 @@ texture = SubResource("GradientTexture1D_y1y60")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hbox"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="SongName" type="Label" parent="Hbox/VBoxContainer"]
 layout_mode = 2
@@ -58,3 +60,14 @@ layout_mode = 2
 theme = ExtResource("1_wdvvc")
 theme_type_variation = &"SubLabel"
 text = "artist name"
+
+[node name="OptionsMenu" type="MenuButton" parent="Hbox"]
+layout_mode = 2
+text = "opts"
+item_count = 3
+popup/item_0/text = "Edit Song Name"
+popup/item_0/id = 0
+popup/item_1/text = "Edit Artist Name"
+popup/item_1/id = 1
+popup/item_2/text = "Delete Song"
+popup/item_2/id = 2
