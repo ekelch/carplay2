@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 MusicPlayer="*res://scripts/music_player.gd"
 SqlController="*res://scripts/sql_controller.gd"
+AppState="*res://scripts/app_state.gd"
 
 [display]
 

@@ -58,3 +58,4 @@ grow_vertical = 0
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="finished" from="MusicPlayer" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="ready" from="CurrentlyPlaying" to="." method="_on_currently_playing_ready"]
