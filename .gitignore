@@ -4,4 +4,4 @@ i# Godot 4+ specific ignores
 /carplay2exe/
 
 *.db
-/assets/
+/assets/songs/
