@@ -19,6 +19,5 @@ func generateChild(song: SongModel):
 	child.buildSongListItem(song)
 	song_list.add_child(child)
 
-
 func _on_currently_playing_ready() -> void:
 	pass

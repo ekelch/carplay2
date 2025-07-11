@@ -53,6 +53,12 @@ func selectAllFilesSorted() -> Array:
 
 func removeFile(file_name: String):
 	database.delete_rows("songs", "file_name = '%s'" % file_name)
+	
+func renameDisplayName(song: SongModel, newName: String):
+	var fq = "UPDATE songs SET song_name = '%s' WHERE file_name = '%s';"
+	var q = fq % [newName, song.file_name]
+	print("excuting query:", q)
+	database.query(q)
 
 func getAllSongs():
 	return database.select_rows("songs", "", ["*"])

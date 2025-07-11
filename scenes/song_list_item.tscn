@@ -63,7 +63,7 @@ text = "artist name"
 
 [node name="OptionsMenu" type="MenuButton" parent="Hbox"]
 layout_mode = 2
-text = "opts"
+text = "options"
 item_count = 3
 popup/item_0/text = "Edit Song Name"
 popup/item_0/id = 0
@@ -71,3 +71,24 @@ popup/item_1/text = "Edit Artist Name"
 popup/item_1/id = 1
 popup/item_2/text = "Delete Song"
 popup/item_2/id = 2
+
+[node name="ChangesContainer" type="HBoxContainer" parent="Hbox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChangesText" type="TextEdit" parent="Hbox/ChangesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "new name"
+
+[node name="EditCancel" type="Button" parent="Hbox/ChangesContainer"]
+layout_mode = 2
+text = "x"
+
+[node name="EditConfirm" type="Button" parent="Hbox/ChangesContainer"]
+layout_mode = 2
+text = "y"
+
+[connection signal="pressed" from="Hbox/ChangesContainer/EditCancel" to="." method="_on_edit_cancel_pressed"]
+[connection signal="pressed" from="Hbox/ChangesContainer/EditConfirm" to="." method="_on_edit_confirm_pressed"]
