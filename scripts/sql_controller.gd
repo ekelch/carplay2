@@ -57,7 +57,11 @@ func removeFile(file_name: String):
 func renameDisplayName(song: SongModel, newName: String):
 	var fq = "UPDATE songs SET song_name = '%s' WHERE file_name = '%s';"
 	var q = fq % [newName, song.file_name]
-	print("excuting query:", q)
+	database.query(q)
+	
+func renameArtist(song: SongModel, newName: String):
+	var fq = "UPDATE songs SET artist_name = '%s' WHERE file_name = '%s';"
+	var q = fq % [newName, song.file_name]
 	database.query(q)
 
 func getAllSongs():
